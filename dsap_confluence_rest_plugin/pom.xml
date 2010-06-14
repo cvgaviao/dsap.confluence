@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.drysoftware.dsap</groupId>
+	<artifactId>dsap_confluence_rest_plugin</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<scm>
+		<connection>scm:git:git://github.com/cvgaviao/dsap.confluence.git</connection>
+		<url>scm:git:git://github.com/cvgaviao/dsap.confluence.git</url>
+		<developerConnection>scm:git:git://github.com/cvgaviao/dsap.confluence.git</developerConnection>
+
+	</scm>
+
+	<organization>
+		<name>Drysoftware Consultoria e Sistemas.</name>
+		<url>http://www.drysoftware.com.br/</url>
+	</organization>
+
+	<name>dsap_confluence_rest_plugin</name>
+	<description>This is the
+		com.drysoftware.dsap:dsap_confluence_rest_plugin plugin for Atlassian
+		Confluence.</description>
+	<packaging>atlassian-plugin</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.randombits.confluence</groupId>
+			<artifactId>confluence-metadata</artifactId>
+			<version>4.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.6</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.confluence</groupId>
+			<artifactId>confluence</artifactId>
+			<version>${confluence.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.confluence.plugin</groupId>
+			<artifactId>func-test</artifactId>
+			<version>2.3-beta1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.jwebunit</groupId>
+			<artifactId>jwebunit-htmlunit-plugin</artifactId>
+			<version>2.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.nekohtml</groupId>
+			<artifactId>nekohtml</artifactId>
+			<version>1.9.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>jsr311-api</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.plugins.rest</groupId>
+			<artifactId>atlassian-rest-common</artifactId>
+			<version>1.0.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.3</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-confluence-plugin</artifactId>
+				<version>3.1.3</version>
+				<extensions>true</extensions>
+				<configuration>
+					<productVersion>${confluence.version}</productVersion>
+					<productDataVersion>${confluence.data.version}</productDataVersion>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+				<version>2.3.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.3</version>
+				<configuration>
+					<connectionType>developerConnection</connectionType>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.0</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<confluence.version>3.1.1</confluence.version>
+		<confluence.data.version>3.1</confluence.data.version>
+	</properties>
+	<repositories>
+		<repository>
+			<id>atlassian-m2-contrib</id>
+			<name>Atlassian Maven 2 Contributor Repository</name>
+			<url>https://maven.atlassian.com/contrib</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<distributionManagement>
+		<repository>
+			<id>drysoftware.internal</id>
+			<name>Drysoftware Maven Internal Repository</name>
+			<uniqueVersion>true</uniqueVersion>
+			<url>dav:https://webdav.mydrive.ch/m2/repository/internal</url>
+		</repository>
+		<snapshotRepository>
+			<id>drysoftware.snapshots</id>
+			<name>Drysoftware Maven Snapshot Repository</name>
+			<url>dav:https://webdav.mydrive.ch/m2/repository/snapshots</url>
+		</snapshotRepository>
+		<site>
+			<id>site.deployments</id>
+			<name>Site deployments</name>
+			<url>dav:https://webdav.mydrive.ch/sites/${project.artifactId}/</url>
+		</site>
+	</distributionManagement>
+
+</project>
